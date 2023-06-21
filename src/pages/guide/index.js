@@ -7,6 +7,9 @@ export default function Index() {
       <main>
         <h1>Guide</h1>
         <p>You have to allow Insecure Content to check the http links.</p>
+        <h3 className="mobile">
+          For mobile browser you have to change flag. Which is not recommended.
+        </h3>
         <header>
           <Or>
             <h2>Chromium</h2>
@@ -32,9 +35,23 @@ export default function Index() {
           margin-inline: 2rem;
           width: 100%;
         }
-
+        .mobile {
+          display: none;
+        }
         video {
           width: 50%;
+        }
+        @media only screen and (max-width: 600px) {
+          main {
+            padding: 0.3rem;
+            padding-top: 1rem;
+          }
+          .mobile {
+            display: block;
+          }
+          video {
+            width: 100%;
+          }
         }
       `}</style>
     </>
