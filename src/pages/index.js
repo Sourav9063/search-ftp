@@ -47,6 +47,22 @@ const Home = (props) => {
                 <Or>LOADING</Or>
               </div>
             )}
+            <section className="updatesection">
+              <div>To check insecure website follow the guide.</div>
+              <Link
+                // onClick={(e) => {
+                //   e.preventDefault();
+                //   window.electron.openExternal(
+                //     "/about"
+                //   );
+                // }}
+                href="/guide"
+              >
+                <div className="showAll developed update">
+                  <Or>Guide</Or>
+                </div>
+              </Link>
+            </section>
           </header>
           <main>
             <section>

@@ -292,6 +292,10 @@ a {
   color: var(--text-color-primary);
 }
 
+.list-wrapper::-webkit-scrollbar {
+  width: 0px;
+}
+
 /* .revealAnimation{
   animation: reveal .2s ease;
 }
