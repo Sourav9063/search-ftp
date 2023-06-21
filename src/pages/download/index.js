@@ -16,18 +16,17 @@ export async function getStaticProps() {
   };
 }
 export default function Index({ mainData, error }) {
-  console.log(mainData);
   const router = useRouter();
   return (
     <>
-      <h2
+      {/* <h2
         onClick={() => {
           router.back();
         }}
         className="back"
       >
         Back
-      </h2>
+      </h2> */}
 
       <div className="header">
         <Or>

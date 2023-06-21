@@ -6,7 +6,7 @@ export const getWorkingNotSureFromList = async ({
   console.log("checking");
   listOFLinks.forEach(async (link) => {
     try {
-      const response = await fetch(link + "/index.php", { mode: "no-cors" });
+      const response = await fetch(link, { mode: "no-cors" });
 
       if (response.ok) {
         console.log(link);
