@@ -5,11 +5,9 @@ import Offline from "../components/offline";
 import { MainDataContext } from "../provider/mainDataProvider";
 import LinkItem from "../components/linkItem";
 import WorkingLinksList from "../components/workingLinksList";
-
 import Or from "../components/Or";
 import { getStaticDataFromGitHub } from "@/network/static/staticdata";
 import useIsMobile from "@/hooks/useIsMobile";
-import Head from "next/head";
 
 export async function getStaticProps() {
   const { mainData, error } = await getStaticDataFromGitHub();
