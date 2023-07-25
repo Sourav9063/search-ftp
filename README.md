@@ -5,7 +5,7 @@ All ftp links for media and live tv of Bangladesh. This program searches through
 Made using ElectronJs.
 It's a UI project of [Ftp Searcher](https://github.com/Sourav9063/ftp_searcher)
 
-## [WEBAPP](https://search-ftp.vercel.app/)
+## [WEBAPP](https://searchftp.vercel.app/)
 
 ## [API](https://sourav9063.github.io/ftp-nextron/)
 
