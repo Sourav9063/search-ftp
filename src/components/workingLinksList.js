@@ -42,70 +42,6 @@ export default function WorkingLinksList() {
         </Or>
       </header>
 
-      {/* <button
-        onClick={() => {
-          console.log("init length")
-          console.log(mainData.media.length);
-          console.log(mainData.live.length);
-          console.log("init length")
-
-          mainData.mediaCol.forEach((element) => {
-            if (
-              !mainData.media.includes(element)
-              // &&
-              // !mainData.live.includes(element)
-            ) {
-              mainData.media.push(element);
-            }
-            console.log(mainData.media.length);
-          });
-          mainData.liveTvCol.forEach((element) => {
-            if (!mainData.live.includes(element)) {
-              mainData.live.push(element);
-            }
-            console.log(mainData.live.length);
-          });
-      
-
-          window.electron.saveData.send(mainData);
-        }}
-      >
-        PushCols
-      </button>
-      <button
-        onClick={() => {
-          mainData.mediaCol = [];
-          mainData.liveTvCol = [];
-        }}
-      >
-        ClearCols
-      </button> 
-      <button
-        onClick={() => {
-          mainData.media = mainData.media.filter((item, index) => {
-            return mainData.media.indexOf(item) === index;
-          });
-          mainData.live = mainData.live.filter((item, index) => {
-            return mainData.live.indexOf(item) === index;
-          });
-          console.log(mainData.media.length);
-          console.log(mainData.live.length);
-
-        }}
-      >
-        DltDup
-
-      </button> 
-      <button
-        onClick={() => {
-
-          window.electron.saveData.send(mainData);
-        }}
-      >
-        SaveToTmp_0
-
-      </button>  */}
-
       <div className="list">
         {what && (
           <div className="fvrtTitle">
@@ -136,29 +72,50 @@ export default function WorkingLinksList() {
             });
           }}
         ></AwesomeButton>
-        <AwesomeButton
-          color="#072ac8"
-          text={"Check Media"}
-          onClick={() => {
-            setWhat("Checking Media");
-            setWorking([]);
-            setNotSure([]);
-            // window.electron.checkLinks.send({
-            //   links: mainData.media,
-            //   type: "fast",
-            // }); TODO: Change
-            getWorkingNotSureFromList({
-              setWorking,
-              setNotSure,
-              listOFLinks: mainData.media,
-              // listOFLinks: [
-              //   "https://fnfonline.wixsite.com/fnfonline",
-              //   "http://103.170.204.84",
-              //   "https://goku.sx/home",
-              // ],
-            });
-          }}
-        ></AwesomeButton>
+        <div className="media">
+          <AwesomeButton
+            style={{ marginRight: "0px", width: "100%" }}
+            color="#072ac8"
+            text={"Check Media"}
+            onClick={() => {
+              setWhat("Checking Media");
+              setWorking([]);
+              setNotSure([]);
+              // window.electron.checkLinks.send({
+              //   links: mainData.media,
+              //   type: "fast",
+              // }); TODO: Change
+              getWorkingNotSureFromList({
+                setWorking,
+                setNotSure,
+                listOFLinks: mainData.media,
+                // listOFLinks: [
+                //   "https://fnfonline.wixsite.com/fnfonline",
+                //   "http://103.170.204.84",
+                //   "https://goku.sx/home",
+                // ],
+              });
+            }}
+          ></AwesomeButton>
+          <AwesomeButton
+            style={{ width: "100%" }}
+            text={"Check Global"}
+            onClick={() => {
+              setWhat("Checking Global Media");
+              setWorking([]);
+              setNotSure([]);
+              // window.electron.checkLinks.send({
+              //   links: mainData.live,
+              //   type: "fast",
+              // }); TODO: Change
+              getWorkingNotSureFromList({
+                setWorking,
+                setNotSure,
+                listOFLinks: mainData.globalMedia,
+              });
+            }}
+          ></AwesomeButton>
+        </div>
 
         {/* <button
             onClick={() => {
@@ -228,6 +185,11 @@ export default function WorkingLinksList() {
         }
         .not-working {
           margin-top: 1rem;
+        }
+        .media {
+          display: flex;
+          justify-content: stretch;
+          align-items: center;
         }
         .fvrtTitle {
           margin-inline: 1rem;

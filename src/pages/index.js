@@ -23,6 +23,7 @@ export async function getStaticProps() {
 const Home = (props) => {
   const [liveShowCount, setLiveShowCount] = useState(5);
   const [mediaShowCount, setMediaShowCount] = useState(5);
+  const [globalMediaShowCount, setGlobalMediaShowCount] = useState(5);
 
   const { mainData, setMainData } = useContext(MainDataContext);
   const isMobile = useIsMobile();
@@ -126,6 +127,41 @@ const Home = (props) => {
                 <Or>
                   <p>
                     {mediaShowCount == 5 ? "Show All Media" : "Hide All Media"}
+                  </p>
+                </Or>
+              </div>
+              <header>
+                <Or>
+                  <h1>All Global Media Links</h1>
+                </Or>
+              </header>
+              <div className="list">
+                <div className="list-wrapper">
+                  {mainData &&
+                    mainData.globalMedia
+                      ?.slice(0, globalMediaShowCount)
+                      .map((media, index) => (
+                        <LinkItem
+                          bgColor="#003566"
+                          key={index + "All Links"}
+                          media={media}
+                        ></LinkItem>
+                      ))}
+                </div>
+              </div>
+              <div
+                className="showAll"
+                onClick={() => {
+                  setGlobalMediaShowCount((state) => {
+                    return state == 5 ? mainData.globalMedia?.length : 5;
+                  });
+                }}
+              >
+                <Or>
+                  <p>
+                    {globalMediaShowCount == 5
+                      ? "Show All Global Media"
+                      : "Hide All Global Media"}
                   </p>
                 </Or>
               </div>
