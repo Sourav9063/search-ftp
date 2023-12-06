@@ -1,9 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { MainDataContext, useMainData } from "../provider/mainDataProvider";
 import LinkItem from "./linkItem";
 import AwesomeButton from "./awesomeButton";
 import Or from "./Or";
 import { getWorkingNotSureFromList } from "@/network/checkFunction/checkFunction";
+import { useOnScreen } from "@/hooks/useOnScreen";
 
 export default function WorkingLinksList() {
   const {
@@ -16,6 +17,9 @@ export default function WorkingLinksList() {
     notSure,
     setNotSure,
   } = useMainData();
+
+  const [notSureShowCount, setNotSureShowCount] = useState(10);
+  const [workingShowCount, setWorkingShowCount] = useState(100);
 
   useEffect(() => {
     const handleCheckData = (event, message) => {
@@ -136,17 +140,33 @@ export default function WorkingLinksList() {
           </div>
         )}
         <div className="list-wrapper">
-          {working &&
-            working.map((link, index) => (
-              <LinkItem
-                type={link.message}
-                media={link.link}
-                key={index + "working"}
-              />
-            ))}
+          {working?.length > 0 &&
+            working
+              .slice(0, workingShowCount)
+              .map((link, index) => (
+                <LinkItem
+                  type={link.message}
+                  media={link.link}
+                  key={index + "working"}
+                />
+              ))}
+          {working?.length > 100 && workingShowCount != working.length && (
+            <div
+              className="showAll"
+              onClick={() => {
+                setWorkingShowCount((state) => {
+                  return Math.min(state + 100, working.length);
+                });
+              }}
+            >
+              <Or>
+                <p>{true ? "Show More" : "Loaded"}</p>
+              </Or>
+            </div>
+          )}
         </div>
 
-        {notSure.length > 0 && (
+        {notSure?.length > 0 && (
           <div className="h2 not-working">
             <h2>{"Not Sure "}</h2>
             <p> ({notSure.length})</p>
@@ -154,18 +174,45 @@ export default function WorkingLinksList() {
         )}
 
         <div className="list-wrapper">
-          {notSure &&
-            notSure.map((link, index) => (
-              <LinkItem
-                type={link.message}
-                media={link.link}
-                key={index + "notSure"}
-              />
-            ))}
+          {notSure?.length > 0 &&
+            notSure
+              .slice(0, notSureShowCount)
+              .map((link, index) => (
+                <LinkItem
+                  type={link.message}
+                  media={link.link}
+                  key={index + "notSure"}
+                />
+              ))}
+          {notSure?.length > 0 && notSureShowCount != notSure.length && (
+            <div
+              className="showAll"
+              onClick={() => {
+                setNotSureShowCount((state) => {
+                  return Math.min(state + 100, notSure.length);
+                });
+              }}
+            >
+              <Or>
+                <p>{notSureShowCount == 10 ? "Show All" : "Hide All"}</p>
+              </Or>
+            </div>
+          )}
         </div>
       </div>
 
       <style jsx>{`
+        .showAll {
+          cursor: pointer;
+          margin-inline: 1rem;
+          margin-block: 1rem;
+          padding-block: 0.5rem;
+          transition: all 0.4s ease;
+        }
+        .showAll:hover {
+          color: var(--hover-bg-color);
+          margin-inline: 0px;
+        }
         section {
           min-height: 100vh;
           display: grid;
