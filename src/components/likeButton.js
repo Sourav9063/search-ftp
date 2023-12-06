@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
 import { MainDataContext } from "../provider/mainDataProvider";
+import { itemTypes } from "@/constants/strings";
 
-export default function LikeButton({ media }) {
+export default function LikeButton({ media, itemType }) {
   const { mainData, setMainData } = useContext(MainDataContext);
   const includedInMediaFvrt = mainData.mediaFvrt?.includes(media);
   const includedInLiveFvrt = mainData.liveFvrt?.includes(media);
@@ -16,10 +17,8 @@ export default function LikeButton({ media }) {
             : ""
         }`}
         onClick={(e) => {
-          console.log(media);
           e.preventDefault();
           e.stopPropagation();
-          const includedInMedia = mainData.media?.includes(media);
           // const includedInLive = mainData.live?.includes(media);
           // setMainData((state) => {
           //   if (includedInMedia) {
@@ -58,7 +57,10 @@ export default function LikeButton({ media }) {
           //   }
           // });
 
-          if (includedInMedia) {
+          if (
+            itemType == itemTypes.MEDIA ||
+            itemType == itemTypes.GLOBAL_MEDIA
+          ) {
             const fav =
               mainData.mediaFvrt != undefined && mainData.mediaFvrt
                 ? mainData.mediaFvrt

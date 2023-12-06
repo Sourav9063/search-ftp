@@ -5,6 +5,7 @@ import AwesomeButton from "./awesomeButton";
 import Or from "./Or";
 import { getWorkingNotSureFromList } from "@/network/checkFunction/checkFunction";
 import { useOnScreen } from "@/hooks/useOnScreen";
+import { itemTypes } from "@/constants/strings";
 
 export default function WorkingLinksList() {
   const {
@@ -20,23 +21,7 @@ export default function WorkingLinksList() {
 
   const [notSureShowCount, setNotSureShowCount] = useState(10);
   const [workingShowCount, setWorkingShowCount] = useState(100);
-
-  useEffect(() => {
-    const handleCheckData = (event, message) => {
-      if (message.message == "Working") {
-        setWorking((state) => {
-          return [...state, message];
-        });
-      }
-      if (message.message == "Not Sure") {
-        setNotSure((state) => {
-          return [...state, message];
-        });
-      }
-    };
-
-    return () => {};
-  }, []);
+  const [type, setType] = useState(itemTypes.MEDIA);
 
   return (
     <>
@@ -58,6 +43,7 @@ export default function WorkingLinksList() {
           text={"Check LiveTV"}
           onClick={() => {
             setWhat("Checking LiveTV");
+            setType(itemTypes.LIVE);
             setWorking([]);
             setNotSure([]);
             // window.electron.checkLinks.send({
@@ -83,6 +69,7 @@ export default function WorkingLinksList() {
             text={"Check Media"}
             onClick={() => {
               setWhat("Checking Media");
+              setType(itemTypes.MEDIA);
               setWorking([]);
               setNotSure([]);
               // window.electron.checkLinks.send({
@@ -106,6 +93,7 @@ export default function WorkingLinksList() {
             text={"Check Global"}
             onClick={() => {
               setWhat("Checking Global Media");
+              setType(itemTypes.GLOBAL_MEDIA);
               setWorking([]);
               setNotSure([]);
               // window.electron.checkLinks.send({
@@ -148,6 +136,7 @@ export default function WorkingLinksList() {
                   type={link.message}
                   media={link.link}
                   key={index + "working"}
+                  itemType={type}
                 />
               ))}
           {working?.length > 100 && workingShowCount != working.length && (
@@ -184,7 +173,7 @@ export default function WorkingLinksList() {
                   key={index + "notSure"}
                 />
               ))}
-          {notSure?.length > 0 && notSureShowCount != notSure.length && (
+          {notSure?.length > 10 && notSureShowCount != notSure.length && (
             <div
               className="showAll"
               onClick={() => {
@@ -194,7 +183,7 @@ export default function WorkingLinksList() {
               }}
             >
               <Or>
-                <p>{notSureShowCount == 10 ? "Show All" : "Hide All"}</p>
+                <p>Show More</p>
               </Or>
             </div>
           )}

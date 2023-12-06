@@ -8,6 +8,7 @@ import WorkingLinksList from "../components/workingLinksList";
 import Or from "../components/Or";
 import { getStaticDataFromGitHub } from "@/network/static/staticdata";
 import useIsMobile from "@/hooks/useIsMobile";
+import { itemTypes } from "@/constants/strings";
 
 export async function getStaticProps() {
   const { mainData, error } = await getStaticDataFromGitHub();
@@ -78,6 +79,7 @@ const Home = (props) => {
                       <LinkItem
                         key={index + "All Links"}
                         media={live}
+                        itemType={itemTypes.LIVE}
                       ></LinkItem>
                     ))}
               </div>
@@ -112,6 +114,7 @@ const Home = (props) => {
                           bgColor="#355cdd"
                           key={index + "All Links"}
                           media={media}
+                          itemType={itemTypes.MEDIA}
                         ></LinkItem>
                       ))}
                 </div>
@@ -145,26 +148,29 @@ const Home = (props) => {
                           bgColor="#003566"
                           key={index + "All Links"}
                           media={media}
+                          itemType={itemTypes.GLOBAL_MEDIA}
                         ></LinkItem>
                       ))}
                 </div>
               </div>
-              <div
-                className="showAll"
-                onClick={() => {
-                  setGlobalMediaShowCount((state) => {
-                    return state == 5 ? mainData.globalMedia?.length : 5;
-                  });
-                }}
-              >
-                <Or>
-                  <p>
-                    {globalMediaShowCount == 5
-                      ? "Show All Global Media"
-                      : "Hide All Global Media"}
-                  </p>
-                </Or>
-              </div>
+              {mainData?.globalMedia?.length > 5 &&
+                globalMediaShowCount != mainData?.globalMedia.length && (
+                  <div
+                    className="showAll"
+                    onClick={() => {
+                      setGlobalMediaShowCount((state) => {
+                        return Math.min(
+                          state + 100,
+                          mainData?.globalMedia?.length
+                        );
+                      });
+                    }}
+                  >
+                    <Or>
+                      <p>{"Show More Global Media"}</p>
+                    </Or>
+                  </div>
+                )}
             </section>
             {!isMobile && (
               <section>
@@ -196,6 +202,7 @@ const Home = (props) => {
                             <LinkItem
                               key={index + "All Links"}
                               media={media}
+                              itemType={itemTypes.LIVE}
                             ></LinkItem>
                           ))}
                       </div>
@@ -216,6 +223,7 @@ const Home = (props) => {
                               bgColor="#fb8b24"
                               key={index + "All Links"}
                               media={media}
+                              itemType={itemTypes.MEDIA}
                             ></LinkItem>
                           ))}
                       </div>

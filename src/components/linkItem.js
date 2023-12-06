@@ -7,6 +7,7 @@ export default function LinkItem({
   type,
   media,
   bgColor = "var(--primary-color)",
+  itemType = "media",
 }) {
   // const [isAlreadyFvrt, setIsAlreadyFvrt] = useState(
   //   mainData.mediaFvrt?.includes(media)
@@ -58,7 +59,7 @@ export default function LinkItem({
             </svg>
           </span>
           <div className="third">
-            <LikeButton media={media}></LikeButton>
+            <LikeButton itemType={itemType} media={media}></LikeButton>
           </div>
           {/* <div
             title="Open in Browser"
