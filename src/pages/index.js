@@ -17,7 +17,7 @@ export async function getStaticProps() {
       mainData,
       error,
     },
-    revalidate: 60 * 60,
+    revalidate: 24 * 60 * 60,
   };
 }
 
