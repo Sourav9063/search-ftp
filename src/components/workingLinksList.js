@@ -104,6 +104,7 @@ export default function WorkingLinksList() {
                 setWorking,
                 setNotSure,
                 listOFLinks: mainData.globalMedia,
+                preferredKey: mainData?.preferredGlobalMediaLinkKey || [],
               });
             }}
           ></AwesomeButton>
