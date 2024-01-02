@@ -54,6 +54,7 @@ export default function WorkingLinksList() {
               setWorking,
               setNotSure,
               listOFLinks: mainData.live,
+              preferredKey: [...mainData.liveFvrt],
               // listOFLinks: [
               //   "https://fnfonline.wixsite.com/fnfonline",
               //   "http://103.170.204.84",
@@ -80,6 +81,7 @@ export default function WorkingLinksList() {
                 setWorking,
                 setNotSure,
                 listOFLinks: mainData.media,
+                preferredKey: [...mainData.mediaFvrt],
                 // listOFLinks: [
                 //   "https://fnfonline.wixsite.com/fnfonline",
                 //   "http://103.170.204.84",
@@ -104,7 +106,10 @@ export default function WorkingLinksList() {
                 setWorking,
                 setNotSure,
                 listOFLinks: mainData.globalMedia,
-                preferredKey: mainData?.preferredGlobalMediaLinkKey || [],
+                preferredKey: [
+                  ...mainData?.preferredGlobalMediaLinkKey,
+                  ...mainData.mediaFvrt,
+                ],
               });
             }}
           ></AwesomeButton>
