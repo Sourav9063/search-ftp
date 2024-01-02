@@ -29,8 +29,6 @@ export const getWorkingNotSureFromList = async ({
       });
     }
   });
-  console.log(preferredWorkingArray.length);
-  console.log(notPreferredWorkingArray.length);
 };
 
 // for (let i = 0; i < listOFLinks.length; i++) {
