@@ -9,6 +9,7 @@ import Or from "../components/Or";
 import { getStaticDataFromGitHub } from "@/network/static/staticdata";
 import useIsMobile from "@/hooks/useIsMobile";
 import { itemTypes } from "@/constants/strings";
+import Search from "@/components/search/Search";
 
 export async function getStaticProps() {
   const { mainData, error } = await getStaticDataFromGitHub();
@@ -178,6 +179,12 @@ const Home = (props) => {
               </section>
             )}
             <section>
+              <header>
+                <Or>
+                  <h1>Search</h1>
+                </Or>
+              </header>
+              <Search mainData={mainData} />
               <header>
                 <Or>
                   <h1>Favorites</h1>
