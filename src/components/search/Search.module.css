@@ -1,0 +1,28 @@
+.search {
+  width: 100%;
+  padding: 1rem;
+}
+.search > input {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  outline: none;
+}
+
+.search > input:focus {
+  border: 1px solid var(--border-color-2);
+}
+
+.search > datalist > option {
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  cursor: pointer;
+  min-width: 100%;
+  outline: none;
+}
+
+.search > a > div {
+  margin-inline: 0px !important;
+}

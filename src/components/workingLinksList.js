@@ -6,6 +6,7 @@ import Or from "./Or";
 import { getWorkingNotSureFromList } from "@/network/checkFunction/checkFunction";
 import { useOnScreen } from "@/hooks/useOnScreen";
 import { itemTypes } from "@/constants/strings";
+import Search from "@/components/search/Search";
 
 export default function WorkingLinksList() {
   const {
@@ -30,7 +31,9 @@ export default function WorkingLinksList() {
           <h1>Working Links</h1>
         </Or>
       </header>
-
+      {working.length > 0 && (
+        <Search mainData={{ working: working.map((link) => link.link) }} />
+      )}
       <div className="list">
         {what && (
           <div className="fvrtTitle">
