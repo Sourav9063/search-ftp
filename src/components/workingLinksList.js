@@ -38,7 +38,10 @@ export default function WorkingLinksList() {
               <h1>Search</h1>
             </Or>
           </header>
-          <Search mainData={{ working: working.map((link) => link.link) }} />
+          <Search
+            mainData={{ working: working.map((link) => link.link) }}
+            listId="workingList"
+          />
         </>
       )}
       <div className="list">
