@@ -32,7 +32,17 @@ export default function WorkingLinksList() {
         </Or>
       </header>
       {working.length > 0 && (
-        <Search mainData={{ working: working.map((link) => link.link) }} />
+        <>
+          <header>
+            <Or>
+              <h1>Search</h1>
+            </Or>
+          </header>
+          <Search
+            mainData={{ working: working.map((link) => link.link) }}
+            listId="workingList"
+          />
+        </>
       )}
       <div className="list">
         {what && (
