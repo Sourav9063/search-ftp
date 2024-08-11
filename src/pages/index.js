@@ -184,7 +184,7 @@ const Home = (props) => {
                   <h1>Search</h1>
                 </Or>
               </header>
-              <Search mainData={mainData} />
+              <Search listId="globalList" mainData={mainData} />
               <header>
                 <Or>
                   <h1>Favorites</h1>
