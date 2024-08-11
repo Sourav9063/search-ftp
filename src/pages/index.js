@@ -18,7 +18,7 @@ export async function getStaticProps() {
       mainData,
       error,
     },
-    revalidate: 60 * 60,
+    revalidate: 24 * 60 * 60,
   };
 }
 
@@ -327,7 +327,9 @@ const Home = (props) => {
         .update {
           margin-top: 0px;
           margin-bottom: 0px;
-          display: none;
+          display: block;
+          opacity: 0;
+          transform: scale(0);
         }
         .updatesection {
           margin-top: 1rem;
@@ -335,12 +337,17 @@ const Home = (props) => {
           padding: 0.5rem;
           opacity: 0.25;
           transition: all 0.2s ease;
+          height: 2.5rem;
+          overflow: hidden;
         }
         .updatesection:hover {
           opacity: 1;
+          height: 4.5rem;
         }
         .updatesection:hover .update {
           display: block;
+          opacity: 1;
+          transform: scale(1);
         }
         .download {
           position: absolute;

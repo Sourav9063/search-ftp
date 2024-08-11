@@ -30,6 +30,9 @@ export default function Index() {
           flex-direction: column;
           align-items: center;
         }
+        main > p {
+          margin-block: 1rem;
+        }
         header {
           margin: 1rem;
           margin-inline: 2rem;
