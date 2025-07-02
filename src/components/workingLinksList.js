@@ -104,7 +104,7 @@ export default function WorkingLinksList() {
             }}
           ></AwesomeButton>
           <AwesomeButton
-            style={{ width: "100%" }}
+            style={{ minWidth: "200px" }}
             text={"Check Global"}
             onClick={() => {
               setWhat("Checking Global Media");
